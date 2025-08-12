@@ -1,7 +1,7 @@
 import os
 import re
 import sys
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 try:
     import tkinter as tk
@@ -189,8 +189,13 @@ class ExcelPreviewApp(tk.Tk):
         name = re.sub(r"\s+", "_", name)
         return name or "qr"
 
-    def generate_qr_images(self, path: str, skip_header: bool = False) -> tuple[int, int]:
-        base_dir = os.path.dirname(os.path.abspath(__file__))
+    def generate_qr_images(self, path: str, skip_header: bool = False) -> Tuple[int, int]:
+        # Guardar los QR junto al ejecutable si está congelado (PyInstaller),
+        # de lo contrario junto al script.
+        if getattr(sys, "frozen", False):  # ejecutable PyInstaller
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            base_dir = os.path.dirname(os.path.abspath(__file__))
         out_dir = os.path.join(base_dir, "img")
         os.makedirs(out_dir, exist_ok=True)
 
