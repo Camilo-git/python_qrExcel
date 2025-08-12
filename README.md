@@ -36,6 +36,11 @@ Luego, presiona "Cargar Excel (.xlsx)", elige tu archivo y verás sus primeras d
 - La app toma la hoja activa del libro.
 - Celdas vacías se muestran como vacías.
 
+## Documentación
+
+- Manual de Usuario: `docs/manual_usuario.md`
+- Diagramas de flujo: `docs/diagramas/flujo.md`
+
 ## Construir ejecutable para Windows (.exe)
 
 Hay dos formas:
